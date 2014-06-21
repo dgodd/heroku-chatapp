@@ -17,14 +17,14 @@
       }
     </style>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-      var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
-      ws.onmessage = function (event) {
+      var socket = io();
+      socket.on('chat message', function(msg){
         var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
+        li.innerHTML = msg;
         document.querySelector('#pings').appendChild(li);
-      };
+      });
     </script>
   </head>
   <body>
